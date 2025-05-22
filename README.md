@@ -8,5 +8,6 @@ product: [
     salePrice
     color: [black, white, blue, green, red, yellow]
     gender:[male, female, male-kid, female-kid]
-    type: [shirt, home-wear, unders(pants, skirt)]
+    type: shirt/ home-wear/ unders(pants, skirt)
+    sizes: [L, M, XL, etc]
 ]

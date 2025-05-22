@@ -5,6 +5,7 @@ import { Select, SelectItem } from "@heroui/select";
 
 export const SmallFilter = () => {
 
+    // todo pull from api
     const sizes = [
         { label: "S", value: "s" },
         { label: "M", value: "m" },

@@ -17,6 +17,8 @@ export const ProductCard = () => {
           colors: ["red", "green"],
           price: 100000,
           salePrice: 50000,
+          sizes: ["S", "M", "L"],
+          type: "shirt"
         },
         {
           id: 2,
@@ -29,6 +31,8 @@ export const ProductCard = () => {
           colors: ["blue", "yellow"],
           price: 200000,
           salePrice: 150000,
+          sizes: ["M", "L", "XL"],
+          type: "pants"
         },
         {
           id: 3,
@@ -38,10 +42,12 @@ export const ProductCard = () => {
             "https://placehold.co/250x400/",
             "https://placehold.co/250x400/"
           ],
-          colors: ["purple", "pink"],
+          colors: ["black", "white"],
           price: 300000,
           salePrice: 250000,
-        },
+          sizes: ["L", "XL", "XXL"],
+          type: "unders"
+        }
       ]
     
     return (
