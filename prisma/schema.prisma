@@ -21,6 +21,7 @@ model Product {
   gender      String?  // male, female, kid-male, kid-female
   price       Float
   salePrice   Float?
+  material    String?
   inStock     Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

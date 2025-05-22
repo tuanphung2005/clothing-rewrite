@@ -16,6 +16,7 @@ async function main() {
     data: {
       name: 'Classic T-Shirt',
       description: 'A comfortable cotton t-shirt',
+      material: 'Cotton',
       type: 'shirt',
       gender: 'male',
       price: 100000,
@@ -47,6 +48,7 @@ async function main() {
     data: {
       name: 'Slim-fit Jeans',
       description: 'Modern slim-fit jeans',
+      material: 'Denim',
       type: 'pants',
       gender: 'male',
       price: 250000,
@@ -78,6 +80,7 @@ async function main() {
     data: {
       name: 'Comfort Boxers',
       description: 'Comfortable cotton boxers',
+      material: 'Cotton',
       type: 'unders',
       gender: 'male',
       price: 80000,
