@@ -66,7 +66,7 @@ export const ProductCard = () => {
                   {product.colors.map((color) => (
                     <div 
                       key={color} 
-                      className="w-6 h-6 rounded-full" 
+                      className="w-6 h-6 rounded-full border border-gray-300" 
                       style={{ backgroundColor: color }}
                       title={color}
                     />

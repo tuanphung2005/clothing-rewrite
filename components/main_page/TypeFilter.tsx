@@ -5,6 +5,7 @@ const clothingTypes = [
   { label: "Tất cả", value: "all" },
   { label: "Áo", value: "shirt" },
   { label: "Quần", value: "pants" },
+  { label: "Váy", value: "skirt" },
   { label: "Đồ lót", value: "unders" },
 ];
 
@@ -16,8 +17,8 @@ export const TypeFilter = () => {
           key={item.value}
           variant="solid" 
           color="primary" 
-          radius="sm" 
-          className="min-w-20" 
+          radius="full" 
+          className="min-w-44 text-xl font-semibold" 
           size="lg"
         >
           {item.label}

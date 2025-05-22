@@ -2,7 +2,6 @@
 import { Slider } from "@heroui/slider";
 import { Select, SelectItem } from "@heroui/select";
 
-
 export const SmallFilter = () => {
 
     // todo pull from api
@@ -52,7 +51,7 @@ export const SmallFilter = () => {
                         labelPlacement="inside"
                         label="Sắp xếp theo"
                         size="md"
-                        variant="bordered"
+                        variant="underlined"
                         radius="none"
                     >
                         <SelectItem key="new">Mới nhất</SelectItem>
