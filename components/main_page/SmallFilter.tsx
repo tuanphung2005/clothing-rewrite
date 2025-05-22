@@ -37,6 +37,7 @@ export const SmallFilter = () => {
                     size="md"
                     variant="bordered"
                     className="w-1/4"
+                    radius="none"
                 >
                     {sizes.map((item) => (
                         <SelectItem key={item.value}>
@@ -51,6 +52,7 @@ export const SmallFilter = () => {
                         label="Sắp xếp theo"
                         size="md"
                         variant="bordered"
+                        radius="none"
                     >
                         <SelectItem key="new">Mới nhất</SelectItem>
                         <SelectItem key="price-asc">Giá: thấp đến cao</SelectItem>

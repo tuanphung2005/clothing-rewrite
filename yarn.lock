@@ -239,6 +239,15 @@
     "@heroui/system" "2.4.15"
     "@heroui/use-measure" "2.1.7"
 
+"@heroui/image@^2.2.12":
+  version "2.2.12"
+  resolved "https://registry.yarnpkg.com/@heroui/image/-/image-2.2.12.tgz#12d909f30284937c78735900171a23ea87d1cc82"
+  integrity sha512-WJmdp86ibq0XJzi64a/n/c5xEDHNvBD5VU7hinyasRLQBa159Hw4Mab7sueFVBX6ELWj/MIyRb9GK8wz9n3Pwg==
+  dependencies:
+    "@heroui/react-utils" "2.1.10"
+    "@heroui/shared-utils" "2.1.9"
+    "@heroui/use-image" "2.1.9"
+
 "@heroui/input@2.4.19":
   version "2.4.19"
   resolved "https://registry.yarnpkg.com/@heroui/input/-/input-2.4.19.tgz#38c98414f413d5447a543de35e158808e5b9bb8d"
@@ -575,6 +584,14 @@
   dependencies:
     "@heroui/shared-utils" "2.1.9"
 
+"@heroui/use-image@2.1.9":
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/@heroui/use-image/-/use-image-2.1.9.tgz#2f553e954bd083753ee4bfa063e8715bb060c39e"
+  integrity sha512-rHfPv4PkRN6mUG3eoBZBi8P8FnM37Kb/lOUM5M5kWtPMRpdfpgDxGQjf24K2lwSQM5xVG1H8WlF1Wipcd0kpmA==
+  dependencies:
+    "@heroui/react-utils" "2.1.10"
+    "@heroui/use-safe-layout-effect" "2.1.7"
+
 "@heroui/use-is-mobile@2.2.9":
   version "2.2.9"
   resolved "https://registry.yarnpkg.com/@heroui/use-is-mobile/-/use-is-mobile-2.2.9.tgz#3c677072963f1ade3806823368d1d79fff0cc753"
@@ -624,6 +641,18 @@
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.3.tgz#c2b9d2e374ee62c586d3adbea87199b1d7a7a6ba"
   integrity sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==
+
+"@iconify/react@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-6.0.0.tgz#8e7ed943792746a0401cc49b9b4e9a5bd5f09b1a"
+  integrity sha512-eqNscABVZS8eCpZLU/L5F5UokMS9mnCf56iS1nM9YYHdH8ZxqZL9zyjSwW60IOQFsXZkilbBiv+1paMXBhSQnw==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
 
 "@img/sharp-darwin-arm64@0.34.2":
   version "0.34.2"
@@ -4749,6 +4778,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swiper@^11.2.7:
+  version "11.2.7"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.2.7.tgz#9657e467047cf098b6c9a79d1864bc6810d2e4fb"
+  integrity sha512-oPJCwdcjFMw3SoBM7AdB1RJzjT7JaE4Mg7TWceTmJ/i2OtF8L01Ct+5eOf48nG3trgR0wXFekWdfnTdl0eg6Pg==
 
 symbol-tree@^3.2.4:
   version "3.2.4"
