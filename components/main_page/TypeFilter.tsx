@@ -1,4 +1,5 @@
 import { Button } from "@heroui/button";
+import { TypeFilterProps } from "@/types/mainPage";
 
 // DO NOT CHANGE THIS
 const clothingTypes = [
@@ -9,24 +10,33 @@ const clothingTypes = [
   { label: "Đồ lót", value: "unders" },
 ];
 
-import { TypeFilterProps } from "@/types/mainPage";
-
-export const TypeFilter = ({onFilterChange} : TypeFilterProps) => {
+export const TypeFilter = ({ onFilterChange, activeType }: TypeFilterProps) => {
   return (
     <div className="flex flex-wrap gap-2 w-full items-center justify-center">
-      {clothingTypes.map((item) => (
-        <Button 
-          key={item.value}
-          variant="solid" 
-          color="primary" 
-          radius="full" 
-          className="min-w-44 text-xl font-semibold" 
-          size="lg"
-          onPress={() => onFilterChange('type', item.value)}
-        >
-          {item.label}
-        </Button>
-      ))}
+      {clothingTypes.map((item) => {
+        const isActive = activeType === item.value;
+        
+        return (
+          <Button 
+            key={item.value}
+            variant="solid"
+            color={isActive ? "primary" : "default"}
+            radius="full" 
+            className={`min-w-44 text-xl font-semibold transition-all duration-200 ${
+              isActive 
+                ? "shadow-lg scale-105 ring-2 ring-primary/30" 
+                : "hover:scale-102 hover:shadow-md opacity-70 hover:opacity-100"
+            }`}
+            size="lg"
+            onPress={() => onFilterChange('type', item.value)}
+          >
+            {item.label}
+            {isActive && item.value !== 'all' && (
+              <span className="ml-2 text-sm">✓</span>
+            )}
+          </Button>
+        );
+      })}
     </div>
   );
 };

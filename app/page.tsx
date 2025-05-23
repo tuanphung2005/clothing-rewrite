@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Image } from "@heroui/image";
 
+import { Button } from "@heroui/button";
+
 import { BigGenderFilter } from "@/components/main_page/BigGenderFilter";
 import { SmallFilter } from "@/components/main_page/SmallFilter";
 import { ProductCard } from "@/components/main_page/ProductCard";
@@ -38,8 +40,14 @@ export default function Home() {
       {/* top section */}
       <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 w-full">
         {/* gender filter buttons */}
-        <BigGenderFilter onFilterChange={handleFilterChange} />
-        <TypeFilter onFilterChange={handleFilterChange} />
+        <BigGenderFilter 
+          onFilterChange={handleFilterChange} 
+          activeGender={filters.gender}
+        />
+        <TypeFilter 
+          onFilterChange={handleFilterChange}
+          activeType={filters.type}
+        />
       </div>
       {/* main content */}
       <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -50,6 +58,29 @@ export default function Home() {
           selectedSizes={filters.selectedSizes}
           sortOrder={filters.sortOrder}
         />
+        {/* Clear All Filters Button */}
+        {(filters.gender !== 'all' || 
+          filters.type !== 'all' || 
+          filters.priceRange[0] !== 40000 || 
+          filters.priceRange[1] !== 500000 || 
+          filters.selectedSizes.length > 0 || 
+          filters.sortOrder !== 'new') && (
+          <div className="w-full flex justify-center">
+            <Button 
+              variant="flat" 
+              color="warning"
+              onPress={() => setFilters({
+                gender: 'all',
+                type: 'all',
+                priceRange: [40000, 500000],
+                selectedSizes: [],
+                sortOrder: 'new'
+              })}
+            >
+              Xóa tất cả bộ lọc
+            </Button>
+          </div>
+        )}
         <ProductCard filters={filters} />
       </div>
     </>

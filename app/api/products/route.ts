@@ -71,7 +71,7 @@ export async function GET(request: Request) {
     
     // Format response
     const formattedProducts = products.map(product => ({
-      id: product.id,
+      id: product.id.toString(), // Convert to string for consistency
       name: product.name,
       image: product.images.map(img => img.url),
       colors: product.colors.map(c => c.color),

@@ -13,6 +13,9 @@ const config = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      colors: {
+        primary: "#BC2626"
+      }
     },
   },
   darkMode: "class",
