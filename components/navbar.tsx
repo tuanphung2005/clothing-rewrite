@@ -9,10 +9,13 @@ import {
 } from "@heroui/navbar";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
+import { Button } from "@heroui/button";
 import { link as linkStyles } from "@heroui/theme";
 import { Icon } from "@iconify/react";
 import NextLink from "next/link";
 import clsx from "clsx";
+
+import { Auth } from "@/components/navBar/Auth";
 
 import { Cart } from "@/components/navBar/Cart";
 
@@ -67,7 +70,10 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden lg:flex">{searchInput} <Cart/></NavbarItem>
+        <NavbarItem className="hidden lg:flex">{searchInput} 
+          <Cart/>
+          <Auth />
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

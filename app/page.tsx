@@ -32,7 +32,7 @@ export default function Home() {
         <Image
           src={bigBanner.src}
           alt="banner"
-          className="rounded-lg"
+          radius="none"
         />
       </div>
       {/* top section */}
