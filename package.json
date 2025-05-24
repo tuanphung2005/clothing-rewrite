@@ -16,12 +16,14 @@
     "seed": "node --require ts-node/register prisma/seed.js"
   },
   "dependencies": {
+    "@heroui/avatar": "^2.2.15",
     "@heroui/button": "2.2.19",
     "@heroui/card": "^2.2.18",
     "@heroui/checkbox": "^2.3.18",
     "@heroui/chip": "^2.2.15",
     "@heroui/code": "2.2.14",
     "@heroui/drawer": "^2.2.16",
+    "@heroui/dropdown": "^2.3.19",
     "@heroui/image": "^2.2.12",
     "@heroui/input": "2.4.19",
     "@heroui/kbd": "2.2.15",
@@ -29,6 +31,7 @@
     "@heroui/listbox": "2.3.18",
     "@heroui/modal": "^2.2.16",
     "@heroui/navbar": "2.2.17",
+    "@heroui/pagination": "^2.2.17",
     "@heroui/popover": "^2.3.19",
     "@heroui/radio": "^2.3.18",
     "@heroui/select": "^2.4.19",

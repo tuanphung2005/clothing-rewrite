@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -7,21 +9,19 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
-import { Button } from "@heroui/button";
-import { link as linkStyles } from "@heroui/theme";
 import { Icon } from "@iconify/react";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { link as linkStyles } from "@heroui/theme";
 
 import { Auth } from "@/components/navBar/Auth";
-
 import { Cart } from "@/components/navBar/Cart";
-
-import { siteConfig } from "@/config/site";
+import { useAuth } from "@/lib/auth-context";
 
 export const Navbar = () => {
+  const { user } = useAuth();
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -30,17 +30,13 @@ export const Navbar = () => {
         input: "text-sm",
       }}
       startContent={
-        <Icon icon="mdi:magnify">
-
-        </Icon>
+        <Icon icon="mdi:magnify" />
       }
       labelPlacement="outside"
       placeholder="Search..."
       type="search"
     />
   );
-
-  const user = true; // Replace with actual user authentication logic
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -71,20 +67,31 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden lg:flex">{searchInput} 
-          <Cart/>
+        <NavbarItem className="hidden lg:flex gap-2">
+          {searchInput}
+          <Cart />
           <Auth />
         </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+        <Cart />
+        <Auth />
         <NavbarMenuToggle />
       </NavbarContent>
 
-      {/* Mobile Menu */}
       <NavbarMenu>
-        {searchInput}
-        <Cart />
+        <div className="mx-4 mt-2 flex flex-col gap-2">
+          {searchInput}
+          {user && (
+            <NextLink
+              href="/account"
+              className="block px-2 py-2 text-foreground hover:text-primary"
+            >
+              Quản lý tài khoản
+            </NextLink>
+          )}
+        </div>
       </NavbarMenu>
     </HeroUINavbar>
   );

@@ -1,0 +1,26 @@
+/* styles/admin.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Admin-specific styles */
+.admin-layout {
+  @apply min-h-screen bg-gray-50;
+}
+
+.admin-sidebar {
+  @apply fixed top-0 left-0 z-50 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out;
+}
+
+.admin-main-content {
+  @apply flex-1 lg:ml-64;
+}
+
+/* Override any main site styles for admin */
+body.admin-body {
+  @apply bg-gray-50;
+}
+
+body.admin-body .container {
+  @apply max-w-none;
+}

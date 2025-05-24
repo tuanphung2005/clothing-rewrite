@@ -1,12 +1,14 @@
 import { Button } from "@heroui/button";
 import { TypeFilterProps } from "@/types/mainPage";
 
-// DO NOT CHANGE THIS
 const clothingTypes = [
   { label: "Tất cả", value: "all" },
   { label: "Áo", value: "shirt" },
   { label: "Quần", value: "pants" },
-  { label: "Váy", value: "skirts" },
+  { label: "Váy", value: "dress" },
+  { label: "Áo khoác", value: "jacket" },
+  { label: "Giày", value: "shoes" },
+  { label: "Phụ kiện", value: "accessories" },
   { label: "Đồ lót", value: "unders" },
 ];
 
@@ -22,12 +24,12 @@ export const TypeFilter = ({ onFilterChange, activeType }: TypeFilterProps) => {
             variant="solid"
             color={isActive ? "primary" : "default"}
             radius="full" 
-            className={`min-w-44 text-xl font-semibold transition-all duration-200 ${
+            className={`min-w-32 text-base font-semibold transition-all duration-200 ${
               isActive 
                 ? "shadow-lg scale-105 ring-2 ring-primary/30" 
                 : "hover:scale-102 hover:shadow-md opacity-70 hover:opacity-100"
             }`}
-            size="lg"
+            size="md"
             onPress={() => onFilterChange('type', item.value)}
           >
             {item.label}

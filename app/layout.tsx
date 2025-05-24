@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { headers } from "next/headers";
 
 import { Providers } from "./providers";
 
@@ -31,6 +32,32 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = headers();
+  const pathname = headersList.get("x-pathname") || "";
+
+  // Check if this is an admin route
+  const isAdminRoute = pathname.startsWith("/admin");
+
+  // For admin routes, provide minimal layout (no navbar/footer)
+  if (isAdminRoute) {
+    return (
+      <html suppressHydrationWarning lang="en">
+        <head />
+        <body
+          className={clsx(
+            "min-h-screen bg-gray-50 font-sans antialiased",
+            fontSans.variable,
+          )}
+        >
+          <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
+            {children}
+          </Providers>
+        </body>
+      </html>
+    );
+  }
+
+  // Main site layout with navbar and footer
   return (
     <html suppressHydrationWarning lang="en">
       <head />
