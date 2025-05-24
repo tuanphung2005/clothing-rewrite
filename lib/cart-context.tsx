@@ -78,15 +78,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const clearCart = async () => {
-    const response = await fetch('/api/cart/clear', {
-      method: 'DELETE',
-    });
+    try {
+      const response = await fetch('/api/cart/clear', {
+        method: 'DELETE',
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to clear cart');
+      if (!response.ok) {
+        console.warn('Cart clear API failed, but cart might already be empty');
+      }
+
+      setCartItems([]);
+    } catch (error) {
+      console.error('Failed to clear cart:', error);
+      setCartItems([]);
     }
-
-    setCartItems([]);
   };
 
   const totalPrice = cartItems.reduce((sum, item) => {
@@ -103,6 +108,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       updateQuantity,
       removeFromCart,
       clearCart,
+      setCartItems, // Add this line
       totalPrice,
       totalItems,
     }}>

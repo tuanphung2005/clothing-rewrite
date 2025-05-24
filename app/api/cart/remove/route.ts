@@ -20,12 +20,15 @@ export async function DELETE(request: Request) {
     const userId = await getUserFromToken(request);
     const { itemId } = await request.json();
 
-    // Verify the cart item belongs to the user
+    // Verify the cart item belongs to the user's active cart
     const cartItem = await prisma.cartItem.findFirst({
       where: {
         id: itemId,
         cart: {
           userId: userId,
+          order: {
+            is: null // Only active carts
+          }
         },
       },
     });

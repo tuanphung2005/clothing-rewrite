@@ -60,7 +60,7 @@ export const Auth = () => {
         onPress={handleLogout}
         title={`Logout ${user.name || user.email}`}
       >
-        <Icon icon="mdi:account-check" width={32} />
+        <Icon icon="mdi:logout" width={32} />
       </Button>
     );
   }

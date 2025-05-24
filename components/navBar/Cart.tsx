@@ -13,11 +13,13 @@ import { Icon } from "@iconify/react";
 import { FormatCurrency } from "@/models/FormatCurrency";
 import { useCart } from "@/lib/cart-context";
 import { useAuth } from "@/lib/auth-context";
+import { useRouter } from "next/navigation";
 
 export const Cart = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { user } = useAuth();
   const { cartItems, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
+  const router = useRouter();
 
   const handleUpdateQuantity = async (itemId: number, newQuantity: number) => {
     try {
@@ -145,8 +147,15 @@ export const Cart = () => {
                       <span className="font-bold text-lg">{FormatCurrency(totalPrice)}</span>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Button color="primary" className="w-full">
-                        Thanh toán
+                      <Button 
+                        color="primary" 
+                        className="w-full"
+                        onPress={() => {
+                          onClose();
+                          router.push('/purchase');
+                        }}
+                      >
+                        Tiến hành thanh toán
                       </Button>
                       <Button variant="flat" color="default" onPress={onClose} className="w-full">
                         Tiếp tục mua sắm

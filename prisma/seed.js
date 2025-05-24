@@ -30,8 +30,8 @@ async function main() {
       },
       colors: {
         create: [
-          { name: 'Red', color: 'red-500' },
-          { name: 'Green', color: 'green-500' },
+          { name: 'Red', color: 'red' },
+          { name: 'Green', color: 'green' },
         ],
       },
       sizes: {

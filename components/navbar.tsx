@@ -40,6 +40,8 @@ export const Navbar = () => {
     />
   );
 
+  const user = true; // Replace with actual user authentication logic
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -49,20 +51,19 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
+          {user && (
+            <NavbarItem>
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
-                color="foreground"
-                href={item.href}
+                href="/account"
               >
-                {item.label}
+                Tài khoản
               </NextLink>
             </NavbarItem>
-          ))}
+          )}
         </ul>
       </NavbarContent>
 

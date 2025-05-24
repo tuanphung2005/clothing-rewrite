@@ -20,9 +20,14 @@ export async function POST(request: Request) {
     const userId = await getUserFromToken(request);
     const { productId, quantity } = await request.json();
 
-    // Find or create cart
+    // Find or create active cart (not associated with orders)
     let cart = await prisma.cart.findFirst({
-      where: { userId },
+      where: { 
+        userId,
+        order: {
+          is: null
+        }
+      },
     });
 
     if (!cart) {
@@ -58,6 +63,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ message: 'Item added to cart' });
   } catch (error) {
+    console.error('Cart add error:', error);
     return NextResponse.json(
       { message: 'Failed to add item to cart' },
       { status: 500 }
