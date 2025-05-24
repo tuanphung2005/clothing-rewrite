@@ -1,7 +1,7 @@
 // app/purchase/page.tsx
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
@@ -42,6 +42,7 @@ export default function PurchasePage() {
   const { cartItems, totalPrice, clearCart, setCartItems } = useCart();
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderCompleted, setOrderCompleted] = useState(false); // Add this flag
   const [formData, setFormData] = useState({
     paymentMethod: 'cod',
     shippingAddress: {
@@ -60,17 +61,19 @@ export default function PurchasePage() {
     },
   });
 
-  // Redirect if cart is empty or user not logged in
+  // Redirect if cart is empty or user not logged in (but not if order just completed)
   useEffect(() => {
     if (!user) {
       router.push('/');
       return;
     }
-    if (cartItems.length === 0) {
+    
+    // Don't redirect if we just completed an order
+    if (cartItems.length === 0 && !orderCompleted) {
       router.push('/');
       return;
     }
-  }, [user, cartItems, router]);
+  }, [user, cartItems, router, orderCompleted]);
 
   // Calculate order summary
   const subtotal = totalPrice;
@@ -131,11 +134,24 @@ export default function PurchasePage() {
 
       console.log('Order created successfully:', result);
 
-      // Clear local cart state
+      // Set order completed flag BEFORE clearing cart
+      setOrderCompleted(true);
+      
+      // Clear cart both locally and on server
+      console.log('Clearing cart after successful order...');
+      await clearCart(); // This will clear both server and local state
+      
+      // Also clear local state as backup
       setCartItems([]);
       
-      // Redirect to success page with order ID
-      router.push(`/purchase/success?orderId=${result.orderId}`);
+      console.log('Cart cleared, items length:', cartItems.length);
+      
+      // Small delay to ensure state updates
+      setTimeout(() => {
+        console.log('About to redirect to:', `/purchase/success?orderId=${result.orderId}`);
+        router.push(`/purchase/success?orderId=${result.orderId}`);
+      }, 200); // Increased delay slightly
+      
     } catch (error) {
       console.error('Order creation failed:', error);
       
@@ -146,7 +162,19 @@ export default function PurchasePage() {
     }
   };
 
-  if (!user || cartItems.length === 0) {
+  // Show loading state if order is completed but cart is empty
+  if (orderCompleted && cartItems.length === 0) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="text-center">
+          <Icon icon="mdi:loading" className="animate-spin text-4xl text-primary mb-4" />
+          <p>Đang chuyển hướng đến trang thành công...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user || (cartItems.length === 0 && !orderCompleted)) {
     return null; // Will redirect
   }
 

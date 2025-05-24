@@ -108,9 +108,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       updateQuantity,
       removeFromCart,
       clearCart,
-      setCartItems, // Add this line
+      setCartItems,
       totalPrice,
       totalItems,
+      fetchCart,
     }}>
       {children}
     </CartContext.Provider>
