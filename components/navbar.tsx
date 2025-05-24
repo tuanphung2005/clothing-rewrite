@@ -60,7 +60,7 @@ export const Navbar = () => {
                 )}
                 href="/account"
               >
-                Tài khoản
+                Quản lý tài khoản
               </NextLink>
             </NavbarItem>
           )}

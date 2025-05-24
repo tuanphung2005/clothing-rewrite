@@ -57,6 +57,7 @@ export const Auth = () => {
       <Button 
         isIconOnly 
         variant="light" 
+        color='danger'
         onPress={handleLogout}
         title={`Logout ${user.name || user.email}`}
       >

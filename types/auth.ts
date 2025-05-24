@@ -8,10 +8,12 @@ export interface User {
 
 export interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name?: string) => Promise<void>;
-  logout: () => void;
   loading: boolean;
+  login: (email: string, password: string) => Promise<User>;
+  register: (email: string, password: string, name?: string) => Promise<User>;
+  logout: () => Promise<void>;
+  refreshUser: () => Promise<User | null>; // Add this
+  checkAuth: () => Promise<void>;          // Add this
 }
 
 export interface CartContextType {

@@ -20,14 +20,25 @@ export const ProfileSection = ({ profile, onUpdate }: ProfileSectionProps) => {
     email: profile.email,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const handleSave = async () => {
     setIsSubmitting(true);
+    setMessage(null);
+    
     try {
       await onUpdate(editData);
       setIsEditing(false);
+      setMessage({ type: 'success', text: 'Cập nhật thông tin thành công!' });
+      
+      // Clear message after 3 seconds
+      setTimeout(() => setMessage(null), 3000);
     } catch (error) {
       console.error('Failed to update profile:', error);
+      setMessage({ 
+        type: 'error', 
+        text: error instanceof Error ? error.message : 'Có lỗi xảy ra' 
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -60,6 +71,16 @@ export const ProfileSection = ({ profile, onUpdate }: ProfileSectionProps) => {
         )}
       </CardHeader>
       <CardBody className="space-y-4">
+        {message && (
+          <div className={`p-3 rounded-lg text-sm ${
+            message.type === 'success' 
+              ? 'bg-green-100 text-green-700 border border-green-200' 
+              : 'bg-red-100 text-red-700 border border-red-200'
+          }`}>
+            {message.text}
+          </div>
+        )}
+        
         {isEditing ? (
           <>
             <Input

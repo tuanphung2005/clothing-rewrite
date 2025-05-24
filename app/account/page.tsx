@@ -14,7 +14,7 @@ import { UserStats, Order, UserProfile } from "@/types/account";
 
 export default function AccountPage() {
   const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, refreshUser } = useAuth(); // Add refreshUser
   const [stats, setStats] = useState<UserStats>({
     totalOrders: 0,
     totalSpent: 0,
@@ -63,7 +63,6 @@ export default function AccountPage() {
   };
 
   const handleProfileUpdate = async (profileData: Partial<UserProfile>) => {
-    // Implement profile update API call
     try {
       const response = await fetch('/api/account/profile', {
         method: 'PUT',
@@ -72,13 +71,19 @@ export default function AccountPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update profile');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update profile');
       }
 
-      // Refresh user data
-      // You might want to call a refresh function from auth context
+      const result = await response.json();
+      console.log('Profile updated:', result);
+
+      // Refresh user data in auth context
+      await refreshUser();
+
     } catch (error) {
       console.error('Error updating profile:', error);
+      alert(`Lỗi cập nhật thông tin: ${error instanceof Error ? error.message : 'Unknown error'}`);
       throw error;
     }
   };

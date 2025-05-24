@@ -16,15 +16,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkAuth = async () => {
     try {
+      setLoading(true);
       const response = await fetch('/api/auth/me');
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
+      } else {
+        setUser(null);
       }
     } catch (error) {
       console.error('Auth check failed:', error);
+      setUser(null);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const refreshUser = async () => {
+    try {
+      const response = await fetch('/api/auth/me');
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+        return userData;
+      } else {
+        setUser(null);
+        return null;
+      }
+    } catch (error) {
+      console.error('User refresh failed:', error);
+      return null;
     }
   };
 
@@ -42,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const userData = await response.json();
     setUser(userData);
+    return userData;
   };
 
   const register = async (email: string, password: string, name?: string) => {
@@ -58,6 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const userData = await response.json();
     setUser(userData);
+    return userData;
   };
 
   const logout = async () => {
@@ -71,7 +94,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{
+      user,
+      loading,
+      login,
+      register,
+      logout,
+      refreshUser,
+      checkAuth,
+    }}>
       {children}
     </AuthContext.Provider>
   );
